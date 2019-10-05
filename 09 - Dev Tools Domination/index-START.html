@@ -18,28 +18,71 @@
     }
 
     // Regular
+    console.log('hello');
 
     // Interpolated
+    console.log('hello, i am a %s', '😀');
 
     // Styled
+    console.log('%cHello, this should be styled', 'font-size: 15px; background-color: blue;')
 
     // warning!
+    console.warn('OH NO');
 
     // Error :|
+    console.error('This is an error!');
 
     // Info
+    //Not working in chrome?? just looks like a console.log
+    console.info('fun fact!');
 
     // Testing
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('nope'), 'Something went wrong. Assertion failed.');
 
     // clearing
+    console.clear();
 
     // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
 
     // Grouping together
+    //Can use console.group or console.groupCollapsed for this. 
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`This is ${dog.name}.`);
+      console.log(`${dog.name} is ${dog.age} years old.`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old.`);
+      console.groupEnd(`${dog.name}`);
+    });
 
     // counting
+    console.count('Soap');
+    console.count('Pual');
+    console.count('Soap');
+    console.count('Soap');
+    console.count('Soap');
+    console.count('Pual');
+    console.count('Pual');
+    console.count('Soap');
+    console.count('Soap');
+    console.count('Pual');
+    console.count('Soap');
+    console.count('Pual');
 
     // timing
+    console.time('fetching data');
+    fetch('https://api.github.com/users/sophdubs')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
+
+    // table
+    // take an array of objects all having the same properties and diplays them neatly in a table 
+    console.table(dogs);
 
   </script>
 </body>
