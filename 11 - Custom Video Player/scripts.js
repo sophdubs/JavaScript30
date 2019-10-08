@@ -27,6 +27,15 @@ function handleRangeUpdate() {
     video[this.name] = this.value;
 }
 
+function handleProgress(e){
+    const percent = (video.currentTime / video.duration) * 100;
+    progressBar.style.flexBasis = `${percent}%`;
+}
+
+function scrub(e) {
+    const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+    video.currentTime = scrubTime;
+}
 // Step 3: Hook up event listeners
 toggle.addEventListener('click', togglePlay);
 video.addEventListener('click', togglePlay);
@@ -38,9 +47,25 @@ skipButtons.forEach(function(button){
     button.addEventListener('click', skip);
 });
 
+
+
 //Could add mousemove event and a click flag to update ranges in real time, not just on a change event. 
+
+
 ranges.forEach(function(range){
     range.addEventListener('change', handleRangeUpdate);
 });
+
+video.addEventListener('timeupdate', handleProgress);
+
+
+
+let mousedown = false;
+progress.addEventListener('click', scrub);
+progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
+progressBar.addEventListener('mousedown', () => mousedown = true);
+progressBar.addEventListener('mouseup', () => mousedown = false);
+
+
 
 
