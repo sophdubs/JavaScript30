@@ -53,7 +53,13 @@ function strip(bandName){
   return bandName.replace(/^(a |the |an )/i, '').trim();
 }
 
-const sorted = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
+const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
+
+const bandsList= document.querySelector('#bands');
+
+bandsList.innerHTML = sortedBands.map(function(band){
+  return `<li>${band}</li>`
+}).join('');
 
 </script>
 
