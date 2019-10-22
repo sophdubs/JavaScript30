@@ -182,6 +182,23 @@
     </li>
   </ul>
 <script>
+
+  const timeNotes = document.querySelectorAll('[data-time]');
+  
+  const seconds = [...timeNotes]
+    .map((timeNote) => timeNote.dataset.time)
+    .map(string => string.split(':'))
+    .map(arr => parseFloat(arr[0] * 60) + parseFloat(arr[1]))
+    .reduce((total, next) => total + next)
+
+   let secondsLeft = seconds;
+   const hours = Math.floor(secondsLeft / 3600);
+   secondsLeft %= 3600;
+   const minutes = Math.floor(secondsLeft/60);
+   secondsLeft %= 60;
+
+   console.log(hours, minutes, secondsLeft);
+
 </script>
 </body>
 </html>
