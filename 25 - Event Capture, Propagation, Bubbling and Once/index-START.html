@@ -40,8 +40,21 @@
   }
 </style>
 
-<button></button>
+<button>Check Out</button>
 <script>
+
+  const divs = document.querySelectorAll('div');
+  const checkout = document.querySelector('button');
+
+  function logText() {
+    console.log(this.classList.value);
+  }
+
+  //Setting once : true unbinds the event listener once the event has fired the first time so that it can only happen once. 
+  checkout.addEventListener('click', () => console.log("click!!!"), {once: true});
+
+  //Setting capture: true fires the events during the capture as opposed to during the bubbling phase. 
+  divs.forEach(div => div.addEventListener('click', logText, {capture: true}));
 
 </script>
 </body>
